@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/userProfilePage.dart';
 
-import 'homePage.dart';
+import 'homePage1.dart';
+import 'landingPage.dart';
 import 'loginPage.dart';
 import 'signUpPage.dart';
 
@@ -12,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomePage(),
+      home: LandingPage(),
     );
   }
 }

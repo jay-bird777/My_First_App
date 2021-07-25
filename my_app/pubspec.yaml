@@ -12,6 +12,10 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  email_auth: ^0.0.1+4
+  video_player: ^0.10.9+1
+
+
 
 dev_dependencies:
   flutter_test:
@@ -21,5 +25,9 @@ flutter:
 
   uses-material-design: true
 
+  fonts:
+    - family: DancingScript
+      fonts:
+        - asset: fonts/DancingScript-VariableFont_wght.ttf
   assets:
     - images/
