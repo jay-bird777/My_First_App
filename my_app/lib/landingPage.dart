@@ -6,26 +6,38 @@ import 'package:flutter/material.dart';
 import 'landingPage2.dart';
 
 class LandingPage extends StatefulWidget {
-  const LandingPage({Key? key}) : super(key: key);
+  LandingPage({Key? key}) : super(key: key);
+  String id = 'landingPage';
 
   @override
   _LandingPageState createState() => _LandingPageState();
 }
 
-double opacity = 1.0;
+double opacity = 0.0;
 bool stopLoop = false;
 
-
 class _LandingPageState extends State<LandingPage> {
+  void loop() {
+    setState(() {
+      stopLoop = true;
+    });
+  }
 
-
-
-
-
+  changeOpacity() {
+    Future.delayed(Duration(seconds: 2), () {
+      if (stopLoop == false)
+        setState(() {
+          opacity = opacity == 0.0 ? 1.0 : 0.0;
+        });
+      else if (stopLoop == true)
+        setState(() {
+          opacity = 0;
+        });
+    });
+  }
 
   Widget build(BuildContext context) {
-
-
+    changeOpacity();
 
     return MaterialApp(
       home: Scaffold(
@@ -47,7 +59,7 @@ class _LandingPageState extends State<LandingPage> {
               child: Container(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(colors: [
-                    Colors.orangeAccent.withOpacity(0.6),
+                    Colors.orangeAccent.withOpacity(0.5),
                     Colors.black12.withOpacity(0.2),
                   ]),
                 ),
@@ -63,8 +75,8 @@ class _LandingPageState extends State<LandingPage> {
                 ),
                 children: [
                   AnimatedOpacity(
-                    opacity: opacity == 1 ? 0 : 1,
-                    duration: Duration(seconds: 1),
+                    opacity: opacity,
+                    duration: Duration(seconds: 2),
                     child: Text(
                       'Tap anywhere to Begin',
                       style: TextStyle(
@@ -90,12 +102,11 @@ class _LandingPageState extends State<LandingPage> {
             ),
             TextButton(
               onPressed: () {
-                stopLoop = true;
                 Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) => LandingPage2(),
-                  ),
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext context) => LandingPage2(),
+                    )
                 );
               },
               child: SizedBox(

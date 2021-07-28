@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_app/homePage1.dart';
+import 'package:my_app/userProfilePage.dart';
 
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  String id = 'loginPage';
+
+  LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -19,6 +22,11 @@ class _LoginPageState extends State<LoginPage> {
       hideOrShow = !hideOrShow;
     });
   }
+
+  var _emailUsernameError;
+  var _password2Error;
+
+
 
   TextEditingController _emailUsernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -42,7 +50,11 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Text(
                   'Imagine',
-                  style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.w500),
+                  style: TextStyle(
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.w500,
+                    fontFamily: 'DancingScript',
+                  ),
                 ),
                 SizedBox(
                   height: 50.0,
@@ -55,7 +67,7 @@ class _LoginPageState extends State<LoginPage> {
                     keyboardType: TextInputType.emailAddress,
                     scrollPadding: EdgeInsets.all(10),
                     decoration: InputDecoration(
-                      errorText: null,
+                      errorText: _emailUsernameError,
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -73,6 +85,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: hideOrShow,
                     scrollPadding: EdgeInsets.all(10),
                     decoration: InputDecoration(
+                      errorText: _password2Error,
                         suffixIcon: IconButton(
                           icon: hideOrShow
                               ? Icon(Icons.visibility)
@@ -92,12 +105,29 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (BuildContext context) => HomePage1(),
-                      ),
-                    );
+                    setState(() {
+                      if (_emailUsernameController.text.length < 3)
+                        _emailUsernameError = 'Enter at least 3 chars';
+                      else
+                        _emailUsernameError = null;
+
+
+                      if  (_passwordController.text.length < 6)
+                        _password2Error = 'Enter at least 6 chars';
+                      else if (_passwordController.text.length > 15)
+                        _password2Error = 'Enter less than 15 chars';
+                      else
+                        _password2Error = null;
+
+                    });
+
+                    if (_emailUsernameController.text.length >= 3 && _passwordController.text.length >= 6 && _passwordController.text.length <= 15)
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) => UserProfilePage(),
+                        ),
+                      );
                   },
                   child: Text('Login'),
                 ),
