@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:my_app/homePage1.dart';
+import 'package:my_app/services/auth.dart';
+import 'package:my_app/signUpPage2.dart';
 import 'package:my_app/userProfilePage.dart';
 
 
@@ -14,6 +16,25 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
+  String email = '';
+  String password = '';
+
+  AuthService _auth = AuthService();
+
+  void submitForm() {
+    setState(() {
+      dynamic result = _auth.registerFirebaseUser(
+          email, password);
+    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => SignUpPage2(),
+      ),
+    );
+  }
 
   bool hideOrShow = true;
 
@@ -62,6 +83,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: 350,
                   child: TextFormField(
+                    onChanged: (val) {
+                      setState(() => email = val.trim());
+                    },
                     controller: _emailUsernameController,
                     maxLines: 1,
                     keyboardType: TextInputType.emailAddress,
@@ -80,6 +104,9 @@ class _LoginPageState extends State<LoginPage> {
                 Container(
                   width: 350,
                   child: TextFormField(
+                    onChanged: (val) {
+                      setState(() => password = val.trim());
+                    },
                     controller: _passwordController,
                     maxLines: 1,
                     obscureText: hideOrShow,
@@ -122,12 +149,7 @@ class _LoginPageState extends State<LoginPage> {
                     });
 
                     if (_emailUsernameController.text.length >= 3 && _passwordController.text.length >= 6 && _passwordController.text.length <= 15)
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) => UserProfilePage(),
-                        ),
-                      );
+                      submitForm();
                   },
                   child: Text('Login'),
                 ),

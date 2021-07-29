@@ -1,8 +1,8 @@
 import 'dart:core';
 
-
 import 'package:flutter/material.dart';
 import 'package:my_app/loginPage.dart';
+import 'package:my_app/services/auth.dart';
 import 'package:my_app/signUpPage2.dart';
 
 import 'homePage1.dart';
@@ -11,14 +11,24 @@ class SignUpPage extends StatefulWidget {
   SignUpPage({Key? key}) : super(key: key);
   String id = 'signUpPage';
 
-
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
 
-
+  void submitForm() {
+    setState(() {
+      dynamic result = _auth.registerFirebaseUser(
+          email, password);
+    });
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => SignUpPage2(),
+      ),
+    );
+  }
   bool hideOrShow = true;
 
   void showText() {
@@ -41,7 +51,10 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _usernameController = TextEditingController();
 
+  String email = '';
+  String password = '';
 
+  AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -76,12 +89,15 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Form(
                     key: _emailKey,
                     child: TextFormField(
+                      onChanged: (val) {
+                        setState(() => email = val.trim());
+                      },
                       validator: (value) {
-                        if(value!.contains('@')){
+                        if (value!.contains('@')) {
                           _emailError = null;
                           _emailCheck = true;
                           return null;
-                        }else{
+                        } else {
                           _emailError = 'Enter a valid email address';
                         }
                       },
@@ -90,7 +106,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       keyboardType: TextInputType.emailAddress,
                       scrollPadding: EdgeInsets.all(10),
                       decoration: InputDecoration(
-                        errorText: _emailError,
+                          errorText: _emailError,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -126,20 +142,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   child: Form(
                     key: _passwordKey,
                     child: TextFormField(
+                      onChanged: (val) {
+                        setState(() => password = val.trim());
+                      },
                       controller: _passwordController2,
                       maxLines: 1,
                       obscureText: hideOrShow,
                       scrollPadding: EdgeInsets.all(10),
                       decoration: InputDecoration(
                           errorText: _passwordError,
-                          suffixIcon: IconButton(
-                            icon: hideOrShow
-                                ? Icon(Icons.visibility)
-                                : Icon(Icons.visibility_off),
-                            onPressed: () {
-                              showText();
-                            },
-                          ),
+
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -147,17 +159,13 @@ class _SignUpPageState extends State<SignUpPage> {
                     ),
                   ),
                 ),
-
-
                 Container(
                   margin: EdgeInsets.fromLTRB(0, 100, 0, 30),
                   child: ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       setState(() {
-
-                        if (_emailKey.currentState!.validate() && _emailCheck == true)
-                          _emailError = null;
-
+                        if (_emailKey.currentState!.validate() &&
+                            _emailCheck == true) _emailError = null;
 
                         if (_usernameController.text.length < 3)
                           _usernameError = 'Enter at least 3 chars';
@@ -166,8 +174,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         else
                           _usernameError = null;
 
-
-                        if  (_passwordController2.text.length < 6)
+                        if (_passwordController2.text.length < 6)
                           _passwordError = 'Enter at least 6 chars';
                         else if (_passwordController2.text.length > 15)
                           _passwordError = 'Enter less than 15 chars';
@@ -175,18 +182,17 @@ class _SignUpPageState extends State<SignUpPage> {
                           _passwordError = null;
                       });
 
-                      if (_usernameController.text.length >= 3 && _usernameController.text.length <= 20 && _passwordController2.text.length >= 6 && _passwordController2.text.length <= 15  && _emailCheck == true)
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (BuildContext context) => SignUpPage2(),
-                          ),
-                        );
+                      if (_usernameController.text.length >= 3 &&
+                          _usernameController.text.length <= 20 &&
+                          _passwordController2.text.length >= 6 &&
+                          _passwordController2.text.length <= 15 &&
+                          _emailCheck == true) {
+                        submitForm();
+                      }
                     },
                     child: Text('Submit'),
                   ),
                 ),
-
                 Text(
                   'Already have an account?',
                   style: TextStyle(
@@ -194,10 +200,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       fontWeight: FontWeight.normal,
                       color: Colors.blueGrey.shade700),
                 ),
-
                 TextButton(
-                  style: ButtonStyle(
-                  ),
+                  style: ButtonStyle(),
                   onPressed: () {
                     Navigator.pushReplacement(
                       context,

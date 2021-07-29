@@ -1,5 +1,7 @@
 
+import 'dart:io';
 
+import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:my_app/loginPage.dart';
 import 'package:my_app/seachBar.dart';
@@ -13,6 +15,7 @@ class HomePage1 extends StatefulWidget {
   HomePage1({Key? key}) : super(key: key);
   String id = 'homePage1';
 
+
   @override
   _HomePage1State createState() => _HomePage1State();
 }
@@ -22,6 +25,8 @@ class _HomePage1State extends State<HomePage1> {
   bool starPressed = false;
   bool _homePage = true;
   int _currentIndex = 0;
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
