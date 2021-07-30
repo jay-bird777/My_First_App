@@ -1,18 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/errorPage.dart';
-import 'package:my_app/landingPage2.dart';
 import 'package:my_app/services/auth.dart';
-import 'package:my_app/signUpPage2.dart';
-import 'package:my_app/signUpPage3.dart';
-import 'package:my_app/userProfilePage.dart';
 
-import 'homePage1.dart';
-import 'homePage2.dart';
-import 'landingPage.dart';
-import 'landingPage3.dart';
-import 'loginPage.dart';
-import 'signUpPage.dart';
+import 'screenPages/homePage1.dart';
+import 'screenPages/landingPage.dart';
+import 'screenPages/loginPage.dart';
 
 void main() => runApp(MyApp());
 

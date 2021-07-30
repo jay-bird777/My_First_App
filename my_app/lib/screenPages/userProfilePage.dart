@@ -1,12 +1,13 @@
 
 import 'dart:io';
+import 'package:flutter/rendering.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/homePage1.dart';
-import 'package:my_app/landingPage.dart';
-import 'package:my_app/seachBar.dart';
-import 'package:my_app/uploadPage1.dart';
+import 'package:my_app/screenPages/homePage1.dart';
+import 'package:my_app/screenPages/landingPage.dart';
+import 'package:my_app/screenPages/seachBar.dart';
+import 'package:my_app/screenPages/uploadPage1.dart';
 
 
 class UserProfilePage extends StatefulWidget {
@@ -23,12 +24,13 @@ class _UserProfilePageState extends State<UserProfilePage> {
   int followers= 0;
   int following= 0;
 
+  String id = 'userProfilePage';
+
   String username = 'Earth_Child';
   String realName = 'Jacore Baptiste';
   String bio = 'Upcoming digital artist from nebraska blah blah blah blah';
 
   int _currentIndex = 0;
-  bool _homePage = false;
 
   var _profileImage;
   final picker = ImagePicker();
@@ -392,7 +394,7 @@ class _UserProfilePageState extends State<UserProfilePage> {
             setState(() {
               _currentIndex = index;
             });
-            if(index == 0 && _homePage == false)
+            if(index == 0)
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

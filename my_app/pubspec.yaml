@@ -17,6 +17,16 @@ dependencies:
   pull_to_refresh: ^2.0.0
   firebase_auth:
   firebase_core:
+  http: ^0.13.0
+  firebase: ^9.0.1
+  firebase_database: ^7.1.2
+  provider: ^4.3.1
+  image_cropper: ^1.4.1
+  firebase_storage: ^10.0.1
+  cloud_firestore:
+  permission_handler: ^8.1.4+2
+  uuid: ^3.0.4
+  random_string:
 
 
 

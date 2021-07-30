@@ -1,9 +1,9 @@
 import 'dart:core';
 
 import 'package:flutter/material.dart';
-import 'package:my_app/loginPage.dart';
+import 'package:my_app/screenPages/loginPage.dart';
+import 'package:my_app/screenPages/signUpPage2.dart';
 import 'package:my_app/services/auth.dart';
-import 'package:my_app/signUpPage2.dart';
 
 import 'homePage1.dart';
 

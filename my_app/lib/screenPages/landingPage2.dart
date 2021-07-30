@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/signUpPage.dart';
+import 'package:my_app/screenPages/signUpPage.dart';
 
 import 'loginPage.dart';
 

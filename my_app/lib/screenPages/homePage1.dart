@@ -1,15 +1,11 @@
 
-import 'dart:io';
 
-import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/loginPage.dart';
-import 'package:my_app/seachBar.dart';
-import 'package:my_app/uploadPage1.dart';
-import 'package:my_app/userProfilePage.dart';
+import 'package:my_app/screenPages/loginPage.dart';
+import 'package:my_app/screenPages/seachBar.dart';
+import 'package:my_app/screenPages/uploadPage1.dart';
+import 'package:my_app/screenPages/userProfilePage.dart';
 import 'homePage2.dart';
-import 'landingPage.dart';
-import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 class HomePage1 extends StatefulWidget {
   HomePage1({Key? key}) : super(key: key);
@@ -23,8 +19,8 @@ class HomePage1 extends StatefulWidget {
 class _HomePage1State extends State<HomePage1> {
   bool bookmarkPressed = false;
   bool starPressed = false;
-  bool _homePage = true;
   int _currentIndex = 0;
+  String id = 'homePage1';
 
 
   @override
@@ -999,7 +995,7 @@ class _HomePage1State extends State<HomePage1> {
             setState(() {
               _currentIndex = index;
             });
-            if(index == 0 && _homePage == false)
+            if(index == 0 && id != id)
               Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

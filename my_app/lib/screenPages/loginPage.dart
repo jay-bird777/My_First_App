@@ -1,9 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:my_app/homePage1.dart';
 import 'package:my_app/services/auth.dart';
-import 'package:my_app/signUpPage2.dart';
-import 'package:my_app/userProfilePage.dart';
+import 'package:my_app/screenPages/userProfilePage.dart';
 
 
 class LoginPage extends StatefulWidget {
@@ -31,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (BuildContext context) => SignUpPage2(),
+        builder: (BuildContext context) => UserProfilePage(),
       ),
     );
   }
@@ -95,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
-                        labelText: 'Email/Username'),
+                        labelText: 'Email'),
                   ),
                 ),
                 SizedBox(

@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:my_app/homePage1.dart';
+import 'package:my_app/screenPages/homePage1.dart';
 
 class SignUpPage3 extends StatefulWidget {
   SignUpPage3({Key? key}) : super(key: key);

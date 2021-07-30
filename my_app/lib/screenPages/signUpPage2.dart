@@ -1,9 +1,8 @@
-import 'dart:ffi';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:my_app/loginPage.dart';
-import 'package:my_app/signUpPage3.dart';
+import 'package:my_app/screenPages/loginPage.dart';
+import 'package:my_app/screenPages/signUpPage3.dart';
 
 import 'homePage1.dart';
 
